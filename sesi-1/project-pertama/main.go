@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func main() {
 	// ini adalah komentar
 	// fmt.Println("Hello world")
@@ -38,18 +36,18 @@ func main() {
 	//
 	//	fmt.Println(message)
 
-	const firstName = "Taufik"
-	fmt.Print("halo ", firstName, "!\n")
-
-	value := (((2+6)%3)*4 - 2) / 3
-	isEqual := value == 2
-	fmt.Printf("nilai %d (%t)\n", value, isEqual)
-
-	left, right := false, true
-	leftAndRight := left && right
-	fmt.Printf("left && right \t(%t)\n", leftAndRight)
-	leftOrRight := left || right
-	fmt.Printf("left || right \t(%t)\n", leftOrRight)
-	leftReverse := !left
-	fmt.Printf("!left \t\t(%t)\n", leftReverse)
+	// const firstName = "Taufik"
+	// fmt.Print("halo ", firstName, "!\n")
+	//
+	// value := (((2+6)%3)*4 - 2) / 3
+	// isEqual := value == 2
+	// fmt.Printf("nilai %d (%t)\n", value, isEqual)
+	//
+	// left, right := false, true
+	// leftAndRight := left && right
+	// fmt.Printf("left && right \t(%t)\n", leftAndRight)
+	// leftOrRight := left || right
+	// fmt.Printf("left || right \t(%t)\n", leftOrRight)
+	// leftReverse := !left
+	// fmt.Printf("!left \t\t(%t)\n", leftReverse)
 }
