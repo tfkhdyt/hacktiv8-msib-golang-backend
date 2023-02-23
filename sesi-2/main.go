@@ -42,25 +42,73 @@ func main() {
 	// 	}
 	// }
 
-	point := 10
+	// point := 10
+	//
+	// if point > 7 {
+	// 	switch point {
+	// 	case 10:
+	// 		fmt.Println("perfect!")
+	// 	default:
+	// 		fmt.Println("nice!")
+	// 	}
+	// } else {
+	// 	if point == 5 {
+	// 		fmt.Println("not bad")
+	// 	} else if point == 3 {
+	// 		fmt.Println("keep trying")
+	// 	} else {
+	// 		fmt.Println("you can do it")
+	// 		if point == 0 {
+	// 			fmt.Println("try harder!")
+	// 		}
+	// 	}
+	// }
 
-	if point > 7 {
-		switch point {
-		case 10:
-			fmt.Println("perfect!")
-		default:
-			fmt.Println("nice!")
+	for i := 0; i < 5; i++ {
+		fmt.Println("Angka", i)
+	}
+
+	i := 0
+	for i < 5 {
+		fmt.Println("Angka", i)
+		i++
+	}
+
+	j := 0
+	for {
+		fmt.Println("Angka", j)
+		j++
+		if j == 5 {
+			break
 		}
-	} else {
-		if point == 5 {
-			fmt.Println("not bad")
-		} else if point == 3 {
-			fmt.Println("keep trying")
-		} else {
-			fmt.Println("you can do it")
-			if point == 0 {
-				fmt.Println("try harder!")
+	}
+
+	for k := 1; k <= 10; k++ {
+		if k%2 == 1 {
+			continue
+		}
+
+		if k > 8 {
+			break
+		}
+
+		fmt.Println("Angka", k)
+	}
+
+	for i := 0; i < 5; i++ {
+		for j := i; j < 5; j++ {
+			fmt.Print(j, " ")
+		}
+		fmt.Println()
+	}
+
+outerloop:
+	for i := 0; i < 5; i++ {
+		for j := 0; j < 5; j++ {
+			if i == 3 {
+				break outerloop
 			}
+			fmt.Print("matriks [", i, "][", j, "]", "\n")
 		}
 	}
 }
