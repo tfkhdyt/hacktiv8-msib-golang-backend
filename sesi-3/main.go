@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 func main() {
@@ -81,41 +80,70 @@ func main() {
 	// fmt.Println("found\t:", howMany)
 	// fmt.Println("value\t:", theNumbers)
 
-	data := []string{"wick", "jason", "ethan"}
-	dataContainsO := filter(data, func(each string) bool {
-		return strings.Contains(each, "o")
-	})
-	dataLength5 := filter(data, func(each string) bool {
-		return len(each) == 5
-	})
+	// data := []string{"wick", "jason", "ethan"}
+	// dataContainsO := filter(data, func(each string) bool {
+	// 	return strings.Contains(each, "o")
+	// })
+	// dataLength5 := filter(data, func(each string) bool {
+	// 	return len(each) == 5
+	// })
+	//
+	// fmt.Println("data asli\t\t:", data)
+	// fmt.Println("filter ada huruf \"o\"\t:", dataContainsO)
+	// fmt.Println("filter jumlah huruf \"5\"\t:", dataLength5)
 
-	fmt.Println("data asli\t\t:", data)
-	fmt.Println("filter ada huruf \"o\"\t:", dataContainsO)
-	fmt.Println("filter jumlah huruf \"5\"\t:", dataLength5)
+	// numberA := 4
+	// numberB := &numberA
+	//
+	// fmt.Println("numberA (value)    :", numberA)
+	// fmt.Println("numberA (address)  :", &numberA)
+	//
+	// fmt.Println("numberB (value)    :", *numberB)
+	// fmt.Println("numberB (address)  :", numberB)
+	//
+	// fmt.Println()
+	//
+	// numberA = 5
+	//
+	// fmt.Println("numberA (value)    :", numberA)
+	// fmt.Println("numberA (address)  :", &numberA)
+	//
+	// fmt.Println("numberB (value)    :", *numberB)
+	// fmt.Println("numberB (address)  :", numberB)
+
+	number := 4
+	fmt.Println("before :", number)
+
+	change(&number, 10)
+	fmt.Println("after  :", number)
 }
 
-func filter(data []string, callback func(string) bool) []string {
-	var result []string
-	for _, each := range data {
-		if filtered := callback(each); filtered {
-			result = append(result, each)
-		}
-	}
-	return result
+func change(original *int, value int) {
+	*original = value
 }
 
-func findMax(numbers []int, max int) (int, func() []int) {
-	var res []int
-	for _, e := range numbers {
-		if e <= max {
-			res = append(res, e)
-		}
-	}
-
-	return len(res), func() []int {
-		return res
-	}
-}
+// func filter(data []string, callback func(string) bool) []string {
+// 	var result []string
+// 	for _, each := range data {
+// 		if filtered := callback(each); filtered {
+// 			result = append(result, each)
+// 		}
+// 	}
+// 	return result
+// }
+//
+// func findMax(numbers []int, max int) (int, func() []int) {
+// 	var res []int
+// 	for _, e := range numbers {
+// 		if e <= max {
+// 			res = append(res, e)
+// 		}
+// 	}
+//
+// 	return len(res), func() []int {
+// 		return res
+// 	}
+// }
 
 // func printMessage(message string, arr []string) {
 // 	nameString := strings.Join(arr, " ")
