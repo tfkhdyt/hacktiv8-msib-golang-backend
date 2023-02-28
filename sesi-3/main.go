@@ -1,8 +1,6 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
 	// names := []string{"Taufik", "Hidayat"}
@@ -111,16 +109,75 @@ func main() {
 	// fmt.Println("numberB (value)    :", *numberB)
 	// fmt.Println("numberB (address)  :", numberB)
 
-	number := 4
-	fmt.Println("before :", number)
+	// number := 4
+	// fmt.Println("before :", number)
+	//
+	// change(&number, 10)
+	// fmt.Println("after  :", number)
 
-	change(&number, 10)
-	fmt.Println("after  :", number)
+	// s1 := student{name: "Taufik", grade: 6}
+	// s2 := &s1
+	//
+	// fmt.Println("student 1, name :", s1.name)
+	// fmt.Println("student 4, name :", s2.name)
+	//
+	// s2.name = "Ethan"
+	// fmt.Println("student 1, name :", s1.name)
+	// fmt.Println("student 4, name :", s2.name)
+
+	// s1 := student{}
+	// s1.name = "Taufik"
+	// s1.age = 21
+	// s1.grade = 6
+	//
+	// fmt.Println("name   :", s1.name)
+	// fmt.Println("age    :", s1.age)
+	// fmt.Println("age    :", s1.person.age)
+	// fmt.Println("grade  :", s1.grade)
+
+	// p1 := person{name: "Wick", age: 21}
+	// s1 := student{person: p1, grade: 2}
+	//
+	// fmt.Println("name   :", s1.name)
+	// fmt.Println("age    :", s1.age)
+	// fmt.Println("grade  :", s1.grade)
+
+	// s1 := struct {
+	// 	person
+	// 	grade int
+	// }{}
+	// s1.person = person{"wick", 21}
+	// s1.grade = 2
+	//
+	// fmt.Println("name   :", s1.person.name)
+	// fmt.Println("age    :", s1.person.age)
+	// fmt.Println("grade  :", s1.grade)
+
+	allStudents := []person{
+		{name: "Wick", age: 23},
+		{name: "Ethan", age: 23},
+		{name: "Bourne", age: 22},
+	}
+
+	for _, student := range allStudents {
+		fmt.Println(student.name, "age is", student.age)
+	}
 }
 
-func change(original *int, value int) {
-	*original = value
+type person struct {
+	name    string
+	age     int
+	hobbies []string
 }
+
+type student struct {
+	person
+	grade int
+}
+
+// func change(original *int, value int) {
+// 	*original = value
+// }
 
 // func filter(data []string, callback func(string) bool) []string {
 // 	var result []string
