@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// function untuk mencari data siswa berdasarkan nama
 func FindStudentByName(name string) (domain.Student, error) {
 	for _, student := range data.Students {
 		if strings.ToLower(student.Nama) == strings.ToLower(name) {
