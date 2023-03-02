@@ -8,12 +8,10 @@ import (
 )
 
 func main() {
-	args := os.Args
-	if len(args) < 2 {
-		log.Fatalln("Argumen tidak valid, masukkan minimal 1 nama")
+	name, err := lib.ParseNameFromArgs(os.Args)
+	if err != nil {
+		log.Fatalln(err.Error())
 	}
-
-	name := args[1]
 
 	student, err := lib.FindStudentByName(name)
 	if err != nil {
