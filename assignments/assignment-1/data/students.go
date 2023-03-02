@@ -1,8 +1,8 @@
 package data
 
-import "assignment-1/domain"
+import "assignment-1/entity"
 
-var Students = []domain.Student{
+var Students = []entity.Student{
 	{
 		Id:        0,
 		Nama:      "Taufik",
