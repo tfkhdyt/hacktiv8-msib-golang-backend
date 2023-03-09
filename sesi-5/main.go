@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"sync"
-	"time"
 )
 
 // var heroes = []string{}
@@ -41,32 +39,47 @@ func main() {
 	// wg.Wait()
 	//
 	// fmt.Printf("Heroes %#v\n", heroes)
-	const loops int = 5
+	// const loops int = 5
+	//
+	// ch := make(chan int)
+	//
+	// var wg sync.WaitGroup
+	//
+	// for i := 1; i <= loops; i++ {
+	// 	wg.Add(1)
+	//
+	// 	go func(num int) {
+	// 		fmt.Println("Start sending data:", num)
+	// 		ch <- num
+	// 		fmt.Println("After sending data:", num)
+	// 		wg.Done()
+	// 	}(i)
+	// }
+	//
+	// go func() {
+	// 	fmt.Println("Wait")
+	// 	wg.Wait()
+	// 	close(ch)
+	// 	fmt.Println("Close channel")
+	// }()
+	//
+	// for c := range ch {
+	// 	time.Sleep(2 * time.Second)
+	// 	fmt.Println("Received:", c)
+	// }
 
-	ch := make(chan int)
+	bChan := make(chan string, 3)
+	// ubChan := make(chan string)
 
-	var wg sync.WaitGroup
+	name := "John"
 
-	for i := 1; i <= loops; i++ {
-		wg.Add(1)
+	go receive(bChan)
 
-		go func(num int) {
-			fmt.Println("Start sending data:", num)
-			ch <- num
-			fmt.Println("After sending data:", num)
-			wg.Done()
-		}(i)
-	}
+	bChan <- name
+	fmt.Println("After sending channel")
+}
 
-	go func() {
-		fmt.Println("Wait")
-		wg.Wait()
-		close(ch)
-		fmt.Println("Close channel")
-	}()
-
-	for c := range ch {
-		time.Sleep(2 * time.Second)
-		fmt.Println("Received:", c)
-	}
+func receive(ch chan string) {
+	result := <-ch
+	fmt.Println(result)
 }
