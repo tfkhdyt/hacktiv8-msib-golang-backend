@@ -78,7 +78,7 @@ func createRequiredTables() {
 	}
 }
 
-func main() {
+func NativeSql() {
 	handleDatabaseConnection()
 	createRequiredTables()
 
