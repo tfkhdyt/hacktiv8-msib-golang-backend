@@ -6,11 +6,11 @@ import (
 	"log"
 )
 
-type employee struct {
-	FullName string `json:"full_name"`
-	Email    string `json:"email"`
-	Age      uint   `json:"age"`
-}
+// type employee struct {
+// 	FullName string `json:"full_name"`
+// 	Email    string `json:"email"`
+// 	Age      uint   `json:"age"`
+// }
 
 type user struct {
 	FullName string `json:"full_name"`

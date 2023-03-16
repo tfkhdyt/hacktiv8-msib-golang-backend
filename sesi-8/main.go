@@ -1,6 +1,7 @@
 package main
 
+import "sesi-8/handler"
+
 func main() {
-	// myJson()
-	urlParsing()
+	handler.StartApp()
 }

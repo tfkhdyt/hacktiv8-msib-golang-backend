@@ -1,0 +1,52 @@
+definitions:
+  dto.MovieResponse:
+    properties:
+      id:
+        type: integer
+      price:
+        type: integer
+      title:
+        type: string
+    type: object
+  dto.NewMovieRequest:
+    properties:
+      price:
+        type: integer
+      title:
+        type: string
+    type: object
+  dto.NewMovieResponse:
+    properties:
+      data:
+        $ref: '#/definitions/dto.MovieResponse'
+      message:
+        type: string
+      statusCode:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /movies:
+    post:
+      consumes:
+      - application/json
+      description: Create new movie data
+      operationId: create-new-movie
+      parameters:
+      - description: request body json
+        in: body
+        name: RequestBody
+        required: true
+        schema:
+          $ref: '#/definitions/dto.NewMovieRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.NewMovieResponse'
+      tags:
+      - movies
+swagger: "2.0"
