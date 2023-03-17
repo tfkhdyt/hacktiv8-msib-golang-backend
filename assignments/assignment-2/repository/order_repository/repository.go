@@ -8,6 +8,6 @@ import (
 type OrderRepository interface {
 	CreateOrder(
 		orderPayload entity.Order,
-		itemPayloads []entity.Item,
+		itemsPayload []entity.Item,
 	) (*entity.Order, errs.MessageErr)
 }
