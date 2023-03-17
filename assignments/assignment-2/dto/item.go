@@ -9,11 +9,11 @@ type NewItemRequest struct {
 }
 
 type GetAllItemsResponse struct {
-	Id          uint      `json:"id"`
+	ID          uint      `json:"id"`
 	CreatedAt   time.Time `json:"createdAt"`
 	UpdatedAt   time.Time `json:"updatedAt"`
 	ItemCode    string    `json:"itemCode"`
 	Description string    `json:"description"`
 	Quantity    uint      `json:"quantity"`
-	OrderId     uint      `json:"orderId"`
+	OrderID     uint      `json:"orderId"`
 }
