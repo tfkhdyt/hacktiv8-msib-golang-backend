@@ -41,12 +41,12 @@ func (o *orderPG) CreateOrder(
 	return &orderPayload, nil
 }
 
-func (o *orderPG) GetAllOrders() (*[]entity.Order, errs.MessageErr) {
+func (o *orderPG) GetAllOrders() ([]entity.Order, errs.MessageErr) {
 	var orders []entity.Order
 
 	if err := o.db.Preload("Items").Find(&orders).Error; err != nil {
 		return nil, errs.NewInternalServerError("Failed to get all orders")
 	}
 
-	return &orders, nil
+	return orders, nil
 }
