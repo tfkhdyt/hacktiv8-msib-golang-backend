@@ -8,7 +8,7 @@ type NewItemRequest struct {
 	Quantity    uint   `json:"quantity"    binding:"required"`
 }
 
-type ItemDTO struct {
+type ItemData struct {
 	ID          uint      `json:"id"`
 	CreatedAt   time.Time `json:"createdAt"`
 	UpdatedAt   time.Time `json:"updatedAt"`
