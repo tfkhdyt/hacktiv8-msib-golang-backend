@@ -15,15 +15,15 @@ type NewOrderResponse struct {
 }
 
 type GetAllOrdersResponse struct {
-	StatusCode int                `json:"statusCode"`
-	Message    string             `json:"message"`
-	Data       []GetOrderResponse `json:"data"`
+	StatusCode int        `json:"statusCode"`
+	Message    string     `json:"message"`
+	Data       []OrderDTO `json:"data"`
 }
 
-type GetOrderResponse struct {
-	ID           uint              `json:"id"`
-	CreatedAt    time.Time         `json:"createdAt"`
-	UpdatedAt    time.Time         `json:"updatedAt"`
-	CustomerName string            `json:"customerName"`
-	Items        []GetItemResponse `json:"items"`
+type OrderDTO struct {
+	ID           uint      `json:"id"`
+	CreatedAt    time.Time `json:"createdAt"`
+	UpdatedAt    time.Time `json:"updatedAt"`
+	CustomerName string    `json:"customerName"`
+	Items        []ItemDTO `json:"items"`
 }
