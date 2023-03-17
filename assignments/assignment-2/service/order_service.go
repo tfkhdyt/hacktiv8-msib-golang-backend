@@ -71,7 +71,7 @@ func (o *orderService) GetAllOrders() (*dto.GetAllOrdersResponse, errs.MessageEr
 	for _, eachOrder := range orders {
 		items := []dto.GetAllItemsResponse{}
 
-		for _, eachItem := range items {
+		for _, eachItem := range eachOrder.Items {
 			item := dto.GetAllItemsResponse{
 				ID:          eachItem.ID,
 				CreatedAt:   eachItem.CreatedAt,
