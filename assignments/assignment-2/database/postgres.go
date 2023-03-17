@@ -22,6 +22,8 @@ func init() {
 	if err := db.AutoMigrate(&entity.Order{}, &entity.Item{}); err != nil {
 		log.Fatalln(err.Error())
 	}
+
+	log.Println("Connected to DB!")
 }
 
 func GetPostgresInstance() *gorm.DB {
