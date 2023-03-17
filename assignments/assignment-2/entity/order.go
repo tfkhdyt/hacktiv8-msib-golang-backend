@@ -10,5 +10,5 @@ type Order struct {
 	gorm.Model
 	CustomerName string    `gorm:"not null"`
 	OrderedAt    time.Time `gorm:"default:now()"`
-	Items        []Item
+	Items        []Item    `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
 }
