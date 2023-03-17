@@ -1,12 +1,11 @@
 package service
 
 import (
-	"net/http"
-
 	"assignment_2/dto"
 	"assignment_2/entity"
 	"assignment_2/pkg/errs"
 	"assignment_2/repository/order_repository"
+	"net/http"
 )
 
 type OrderService interface {
@@ -66,13 +65,13 @@ func (o *orderService) GetAllOrders() (*dto.GetAllOrdersResponse, errs.MessageEr
 		return nil, err
 	}
 
-	data := []dto.OrderResponse{}
+	data := []dto.GetOrderResponse{}
 
 	for _, eachOrder := range orders {
-		items := []dto.GetAllItemsResponse{}
+		items := []dto.GetItemResponse{}
 
 		for _, eachItem := range eachOrder.Items {
-			item := dto.GetAllItemsResponse{
+			item := dto.GetItemResponse{
 				ID:          eachItem.ID,
 				CreatedAt:   eachItem.CreatedAt,
 				UpdatedAt:   eachItem.UpdatedAt,
@@ -85,7 +84,7 @@ func (o *orderService) GetAllOrders() (*dto.GetAllOrdersResponse, errs.MessageEr
 			items = append(items, item)
 		}
 
-		order := dto.OrderResponse{
+		order := dto.GetOrderResponse{
 			ID:           eachOrder.ID,
 			CreatedAt:    eachOrder.CreatedAt,
 			UpdatedAt:    eachOrder.UpdatedAt,
