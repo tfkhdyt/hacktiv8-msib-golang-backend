@@ -10,7 +10,7 @@ import (
 
 type OrderService interface {
 	CreateOrder(payload dto.NewOrderRequest) (*dto.NewOrderResponse, errs.MessageErr)
-	GetAllOrders() ([]dto.GetAllOrdersResponse, errs.MessageErr)
+	GetAllOrders() (*dto.GetAllOrdersResponse, errs.MessageErr)
 }
 
 type orderService struct {
@@ -59,40 +59,48 @@ func (o *orderService) CreateOrder(
 	return response, nil
 }
 
-func (o *orderService) GetAllOrders() ([]dto.GetAllOrdersResponse, errs.MessageErr) {
+func (o *orderService) GetAllOrders() (*dto.GetAllOrdersResponse, errs.MessageErr) {
 	orders, err := o.orderRepo.GetAllOrders()
 	if err != nil {
 		return nil, err
 	}
 
-	response := []dto.GetAllOrdersResponse{}
+	data := []dto.OrderResponse{}
 
 	for _, eachOrder := range orders {
 		items := []dto.GetAllItemsResponse{}
 
-		for _, eachItem := range eachOrder.Items {
+		for _, eachItem := range items {
 			item := dto.GetAllItemsResponse{
-				Id:          eachItem.ID,
+				ID:          eachItem.ID,
 				CreatedAt:   eachItem.CreatedAt,
 				UpdatedAt:   eachItem.UpdatedAt,
 				ItemCode:    eachItem.ItemCode,
 				Description: eachItem.Description,
 				Quantity:    eachItem.Quantity,
-				OrderId:     eachItem.OrderID,
+				OrderID:     eachItem.OrderID,
 			}
+
 			items = append(items, item)
 		}
 
-		order := dto.GetAllOrdersResponse{
-			Id:           eachOrder.ID,
+		order := dto.OrderResponse{
+			ID:           eachOrder.ID,
 			CreatedAt:    eachOrder.CreatedAt,
 			UpdatedAt:    eachOrder.UpdatedAt,
 			CustomerName: eachOrder.CustomerName,
 			Items:        items,
 		}
 
-		response = append(response, order)
+		data = append(data, order)
+	}
+
+	response := &dto.GetAllOrdersResponse{
+		Message:    "success",
+		StatusCode: http.StatusOK,
+		Data:       data,
 	}
 
 	return response, nil
+
 }
