@@ -19,16 +19,16 @@ func NewOrderPG(db *gorm.DB) order_repository.OrderRepository {
 	}
 }
 
-func (i *orderPG) CreateOrder(
+func (o *orderPG) CreateOrder(
 	orderPayload entity.Order,
-	itemPayloads []entity.Item,
+	itemsPayload []entity.Item,
 ) (*entity.Order, errs.MessageErr) {
-	if err := i.db.Transaction(func(tx *gorm.DB) error {
+	if err := o.db.Transaction(func(tx *gorm.DB) error {
 		if err := tx.Create(&orderPayload).Error; err != nil {
 			return err
 		}
 
-		for _, item := range itemPayloads {
+		for _, item := range itemsPayload {
 			if err := tx.Create(&item).Error; err != nil {
 				return err
 			}
