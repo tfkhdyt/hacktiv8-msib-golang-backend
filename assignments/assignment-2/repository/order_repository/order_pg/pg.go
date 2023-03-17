@@ -29,7 +29,7 @@ func (o *orderPG) CreateOrder(
 		}
 
 		for _, item := range itemsPayload {
-			if err := tx.Create(&item).Error; err != nil {
+			if err := tx.Model(&orderPayload).Association("Items").Append(&item); err != nil {
 				return err
 			}
 		}
