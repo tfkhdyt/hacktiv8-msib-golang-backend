@@ -33,3 +33,13 @@ func (o *orderHandler) CreateOrder(ctx *gin.Context) {
 
 	ctx.JSON(newOrder.StatusCode, newOrder)
 }
+
+func (o *orderHandler) GetAllOrders(ctx *gin.Context) {
+	orders, err := o.orderService.GetAllOrders()
+	if err != nil {
+		ctx.JSON(err.StatusCode(), err)
+		return
+	}
+
+	ctx.JSON(orders.StatusCode, orders)
+}
