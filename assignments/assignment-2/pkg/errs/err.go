@@ -41,3 +41,11 @@ func NewUnprocessableEntity(message string) MessageErr {
 		ErrError:      "INVALID_REQUEST_BODY",
 	}
 }
+
+func NewBadRequest(message string) MessageErr {
+	return &MessageErrData{
+		ErrMessage:    message,
+		ErrStatusCode: http.StatusBadRequest,
+		ErrError:      "BAD_REQUEST",
+	}
+}
