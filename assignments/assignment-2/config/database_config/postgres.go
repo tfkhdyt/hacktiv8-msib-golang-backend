@@ -2,8 +2,10 @@ package database_config
 
 import (
 	"fmt"
+	"log"
 	"os"
 
+	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -14,6 +16,12 @@ type databaseConfig struct {
 	user     string
 	password string
 	dbName   string
+}
+
+func init() {
+	if err := godotenv.Load(); err != nil {
+		log.Fatalln(err.Error())
+	}
 }
 
 func GetDBConfig() gorm.Dialector {
