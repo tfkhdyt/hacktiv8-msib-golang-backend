@@ -1,9 +1,10 @@
 package database
 
 import (
+	"log"
+
 	"assignment_2/config/database_config"
 	"assignment_2/entity"
-	"log"
 
 	"gorm.io/gorm"
 )
