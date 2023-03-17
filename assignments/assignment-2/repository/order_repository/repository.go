@@ -11,5 +11,5 @@ type OrderRepository interface {
 		itemsPayload []entity.Item,
 	) (*entity.Order, errs.MessageErr)
 
-	GetAllOrders() (*[]entity.Order, errs.MessageErr)
+	GetAllOrders() ([]entity.Order, errs.MessageErr)
 }
