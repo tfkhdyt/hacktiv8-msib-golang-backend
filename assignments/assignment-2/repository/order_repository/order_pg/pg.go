@@ -4,7 +4,6 @@ import (
 	"assignment_2/entity"
 	"assignment_2/pkg/errs"
 	"assignment_2/repository/order_repository"
-	"log"
 
 	"gorm.io/gorm"
 )
@@ -36,8 +35,7 @@ func (o *orderPG) CreateOrder(
 
 		return nil
 	}); err != nil {
-		log.Println("Error:", err.Error())
-		return nil, errs.NewInternalServerError("Failed when creating order!")
+		return nil, errs.NewBadRequest(err.Error())
 	}
 
 	return &orderPayload, nil
