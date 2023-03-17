@@ -1,11 +1,12 @@
 package service
 
 import (
+	"net/http"
+
 	"assignment_2/dto"
 	"assignment_2/entity"
 	"assignment_2/pkg/errs"
 	"assignment_2/repository/order_repository"
-	"net/http"
 )
 
 type OrderService interface {
@@ -102,5 +103,4 @@ func (o *orderService) GetAllOrders() (*dto.GetAllOrdersResponse, errs.MessageEr
 	}
 
 	return response, nil
-
 }

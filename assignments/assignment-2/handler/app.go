@@ -1,11 +1,12 @@
 package handler
 
 import (
+	"log"
+
 	"assignment_2/database"
 	"assignment_2/handler/http_handler"
 	"assignment_2/repository/order_repository/order_pg"
 	"assignment_2/service"
-	"log"
 
 	"github.com/gin-gonic/gin"
 )
