@@ -20,6 +20,7 @@ func StartApp() {
 
 	r := gin.Default()
 	r.POST("/orders", orderHandler.CreateOrder)
+	r.GET("/orders", orderHandler.GetAllOrders)
 
 	if err := r.Run(":3000"); err != nil {
 		log.Fatalln(err.Error())
