@@ -11,6 +11,7 @@ import (
 type OrderService interface {
 	CreateOrder(payload dto.NewOrderRequest) (*dto.NewOrderResponse, errs.MessageErr)
 	GetAllOrders() (*dto.GetAllOrdersResponse, errs.MessageErr)
+	GetOrderByID(orderID uint) (*dto.GetOrderByIDResponse, errs.MessageErr)
 }
 
 type orderService struct {
@@ -99,6 +100,42 @@ func (o *orderService) GetAllOrders() (*dto.GetAllOrdersResponse, errs.MessageEr
 		Message:    "success",
 		StatusCode: http.StatusOK,
 		Data:       data,
+	}
+
+	return response, nil
+}
+
+func (o *orderService) GetOrderByID(orderID uint) (*dto.GetOrderByIDResponse, errs.MessageErr) {
+	order, err := o.orderRepo.GetOrderByID(orderID)
+	if err != nil {
+		return nil, err
+	}
+
+	items := []dto.ItemData{}
+	for _, eachItem := range order.Items {
+		item := dto.ItemData{
+			ID:          eachItem.ID,
+			CreatedAt:   eachItem.CreatedAt,
+			UpdatedAt:   eachItem.UpdatedAt,
+			ItemCode:    eachItem.ItemCode,
+			Description: eachItem.Description,
+			Quantity:    eachItem.Quantity,
+			OrderID:     eachItem.OrderID,
+		}
+
+		items = append(items, item)
+	}
+
+	response := &dto.GetOrderByIDResponse{
+		StatusCode: http.StatusOK,
+		Message:    "success",
+		Data: dto.OrderData{
+			ID:           order.ID,
+			CreatedAt:    order.CreatedAt,
+			UpdatedAt:    order.UpdatedAt,
+			CustomerName: order.CustomerName,
+			Items:        items,
+		},
 	}
 
 	return response, nil
