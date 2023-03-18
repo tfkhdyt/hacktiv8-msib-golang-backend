@@ -88,3 +88,21 @@ func (o *orderHandler) UpdateOrderByID(ctx *gin.Context) {
 
 	ctx.JSON(updatedOrder.StatusCode, updatedOrder)
 }
+
+func (o *orderHandler) DeleteOrderByID(ctx *gin.Context) {
+	orderID := ctx.Param("orderID")
+	orderIDInt, err := strconv.Atoi(orderID)
+	if err != nil {
+		newError := errs.NewBadRequest("orderID should be an unsigned integer")
+		ctx.JSON(newError.StatusCode(), newError)
+		return
+	}
+
+	response, errOrder := o.orderService.DeleteOrderByID(uint(orderIDInt))
+	if errOrder != nil {
+		ctx.JSON(errOrder.StatusCode(), errOrder)
+		return
+	}
+
+	ctx.JSON(response.StatusCode, response)
+}
