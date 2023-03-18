@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## assignment-2-0.3.0 - 2023-03-18
+#### Bug Fixes
+- **(order-pg)** change not found error message to "Order with id %d is not found" - (1488245) - tfkhdyt
+#### Features
+- **(order-dto)** add DeleteOrderByIDResponse dto - (9eefe5c) - tfkhdyt
+- **(order-handler)** add DeleteOrderByID method - (97a4573) - tfkhdyt
+- **(order-pg)** add DeleteOrderByID implementation - (b0bc908) - tfkhdyt
+- **(order-repo)** add DeleteOrderByID method definition - (00b3e0e) - tfkhdyt
+- **(order-service)** add DeleteOrderByID method - (bd85814) - tfkhdyt
+- **(routes)** add DELETE route for order - (a3f3c55) - tfkhdyt
+
+- - -
+
 ## assignment-2-0.2.0 - 2023-03-18
 #### Bug Fixes
 - **(item-entity)** remove unique constraint from ItemCode property - (137892f) - tfkhdyt

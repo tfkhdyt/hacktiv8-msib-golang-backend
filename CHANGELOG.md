@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.4.0 - 2023-03-18
+### Package updates
+- assignment-2 bumped to assignment-2-0.3.0
+### Global changes
+#### Miscellaneous Chores
+- **(gitignore)** change env to glob - (f381911) - tfkhdyt
+- **(lefthook)** add --fix flag to assignment-2-lint command - (dfc55ac) - tfkhdyt
+- initialize lefthook - (8ae6492) - tfkhdyt
+
+- - -
+
 ## 0.3.0 - 2023-03-18
 ### Package updates
 - assignment-2 bumped to assignment-2-0.2.0
