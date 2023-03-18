@@ -78,5 +78,5 @@ func (o *orderPG) UpdateOrderByID(orderID uint, orderPayload entity.Order, items
 		return nil, errs.NewBadRequest(err.Error())
 	}
 
-	return &orderPayload, nil
+	return order, nil
 }
