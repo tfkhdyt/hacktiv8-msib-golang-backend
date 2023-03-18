@@ -18,10 +18,7 @@ func NewOrderPG(db *gorm.DB) order_repository.OrderRepository {
 	}
 }
 
-func (o *orderPG) CreateOrder(
-	orderPayload entity.Order,
-	itemsPayload []entity.Item,
-) (*entity.Order, errs.MessageErr) {
+func (o *orderPG) CreateOrder(orderPayload entity.Order, itemsPayload []entity.Item) (*entity.Order, errs.MessageErr) {
 	if err := o.db.Transaction(func(tx *gorm.DB) error {
 		if err := tx.Create(&orderPayload).Error; err != nil {
 			return err
@@ -59,4 +56,27 @@ func (o *orderPG) GetOrderByID(orderID uint) (*entity.Order, errs.MessageErr) {
 	}
 
 	return &order, nil
+}
+
+func (o *orderPG) UpdateOrderByID(orderID uint, orderPayload entity.Order, itemsPayload []entity.Item) (*entity.Order, errs.MessageErr) {
+	order, err := o.GetOrderByID(orderID)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := o.db.Transaction(func(tx *gorm.DB) error {
+		if err := o.db.Model(order).Updates(orderPayload).Error; err != nil {
+			return err
+		}
+
+		if err := tx.Model(order).Association("Items").Replace(&itemsPayload); err != nil {
+			return err
+		}
+
+		return nil
+	}); err != nil {
+		return nil, errs.NewBadRequest(err.Error())
+	}
+
+	return &orderPayload, nil
 }
