@@ -5,6 +5,7 @@ import (
 	"assignment_2/entity"
 	"assignment_2/pkg/errs"
 	"assignment_2/repository/order_repository"
+	"fmt"
 	"net/http"
 )
 
@@ -12,7 +13,8 @@ type OrderService interface {
 	CreateOrder(payload dto.NewOrderRequest) (*dto.NewOrderResponse, errs.MessageErr)
 	GetAllOrders() (*dto.GetAllOrdersResponse, errs.MessageErr)
 	GetOrderByID(orderID uint) (*dto.GetOrderByIDResponse, errs.MessageErr)
-	UpdateOrderByID(orderId uint, payload dto.NewOrderRequest) (*dto.GetOrderByIDResponse, errs.MessageErr)
+	UpdateOrderByID(orderID uint, payload dto.NewOrderRequest) (*dto.GetOrderByIDResponse, errs.MessageErr)
+	DeleteOrderByID(orderID uint) (*dto.DeleteOrderByIDResponse, errs.MessageErr)
 }
 
 type orderService struct {
@@ -50,7 +52,7 @@ func (o *orderService) CreateOrder(
 	}
 
 	response := &dto.NewOrderResponse{
-		Message:    "success",
+		Message:    fmt.Sprintf("Order with id %d has been successfully created", newOrder.ID),
 		StatusCode: http.StatusCreated,
 		Data: dto.NewOrderRequest{
 			OrderedAt:    newOrder.OrderedAt,
@@ -181,7 +183,7 @@ func (o *orderService) UpdateOrderByID(orderID uint, payload dto.NewOrderRequest
 
 	response := &dto.GetOrderByIDResponse{
 		StatusCode: http.StatusOK,
-		Message:    "success",
+		Message:    fmt.Sprintf("Order with id %d has been successfully updated", orderID),
 		Data: dto.OrderData{
 			ID:           updatedOrder.ID,
 			CreatedAt:    updatedOrder.CreatedAt,
@@ -189,6 +191,19 @@ func (o *orderService) UpdateOrderByID(orderID uint, payload dto.NewOrderRequest
 			CustomerName: updatedOrder.CustomerName,
 			Items:        items,
 		},
+	}
+
+	return response, nil
+}
+
+func (o *orderService) DeleteOrderByID(orderID uint) (*dto.DeleteOrderByIDResponse, errs.MessageErr) {
+	if err := o.orderRepo.DeleteOrderByID(orderID); err != nil {
+		return nil, err
+	}
+
+	response := &dto.DeleteOrderByIDResponse{
+		StatusCode: http.StatusOK,
+		Message:    fmt.Sprintf("Order with id %d has been successfully deleted", orderID),
 	}
 
 	return response, nil
