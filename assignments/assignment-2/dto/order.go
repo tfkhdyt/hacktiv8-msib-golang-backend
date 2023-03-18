@@ -26,6 +26,11 @@ type GetOrderByIDResponse struct {
 	Data       OrderData `json:"data"`
 }
 
+type DeleteOrderByIDResponse struct {
+	StatusCode int    `json:"statusCode"`
+	Message    string `json:"message"`
+}
+
 type OrderData struct {
 	ID           uint       `json:"id"`
 	CreatedAt    time.Time  `json:"createdAt"`
