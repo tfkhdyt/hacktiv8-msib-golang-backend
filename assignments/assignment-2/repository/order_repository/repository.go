@@ -13,4 +13,6 @@ type OrderRepository interface {
 	GetOrderByID(orderID uint) (*entity.Order, errs.MessageErr)
 
 	UpdateOrderByID(orderID uint, orderPayload entity.Order, itemsPayload []entity.Item) (*entity.Order, errs.MessageErr)
+
+	DeleteOrderByID(orderID uint) errs.MessageErr
 }
