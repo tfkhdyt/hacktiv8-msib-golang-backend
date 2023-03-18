@@ -12,6 +12,7 @@ type OrderService interface {
 	CreateOrder(payload dto.NewOrderRequest) (*dto.NewOrderResponse, errs.MessageErr)
 	GetAllOrders() (*dto.GetAllOrdersResponse, errs.MessageErr)
 	GetOrderByID(orderID uint) (*dto.GetOrderByIDResponse, errs.MessageErr)
+	UpdateOrderByID(orderId uint, payload dto.NewOrderRequest) (*dto.NewOrderResponse, errs.MessageErr)
 }
 
 type orderService struct {
@@ -135,6 +136,40 @@ func (o *orderService) GetOrderByID(orderID uint) (*dto.GetOrderByIDResponse, er
 			UpdatedAt:    order.UpdatedAt,
 			CustomerName: order.CustomerName,
 			Items:        items,
+		},
+	}
+
+	return response, nil
+}
+
+func (o *orderService) UpdateOrderByID(orderID uint, payload dto.NewOrderRequest) (*dto.NewOrderResponse, errs.MessageErr) {
+	orderPayload := entity.Order{
+		CustomerName: payload.CustomerName,
+		OrderedAt:    payload.OrderedAt,
+	}
+
+	itemsPayload := []entity.Item{}
+	for _, eachItem := range payload.Items {
+		item := entity.Item{
+			ItemCode:    eachItem.ItemCode,
+			Description: eachItem.Description,
+			Quantity:    eachItem.Quantity,
+		}
+
+		itemsPayload = append(itemsPayload, item)
+	}
+
+	updatedOrder, err := o.orderRepo.UpdateOrderByID(orderID, orderPayload, itemsPayload)
+	if err != nil {
+		return nil, err
+	}
+
+	response := &dto.NewOrderResponse{
+		Message:    "success",
+		StatusCode: http.StatusOK,
+		Data: dto.NewOrderRequest{
+			OrderedAt:    updatedOrder.OrderedAt,
+			CustomerName: updatedOrder.CustomerName,
 		},
 	}
 
