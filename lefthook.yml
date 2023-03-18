@@ -1,0 +1,10 @@
+pre-commit:
+  commands:
+    assignment-2-lint:
+      root: 'assignments/assignment-2/'
+      run: golangci-lint run
+pre-push:
+  commands:
+    assignment-2-lint:
+      root: 'assignments/assignment-2/'
+      run: golangci-lint run
