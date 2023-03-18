@@ -49,3 +49,11 @@ func NewBadRequest(message string) MessageErr {
 		ErrError:      "BAD_REQUEST",
 	}
 }
+
+func NewNotFound(message string) MessageErr {
+	return &messageErrData{
+		ErrMessage:    message,
+		ErrStatusCode: http.StatusNotFound,
+		ErrError:      "DATA_NOT_FOUND",
+	}
+}
