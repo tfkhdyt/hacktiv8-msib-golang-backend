@@ -80,3 +80,16 @@ func (o *orderPG) UpdateOrderByID(orderID uint, orderPayload entity.Order, items
 
 	return order, nil
 }
+
+func (o *orderPG) DeleteOrderByID(orderID uint) errs.MessageErr {
+	order, err := o.GetOrderByID(orderID)
+	if err != nil {
+		return err
+	}
+
+	if err := o.db.Delete(order).Error; err != nil {
+		return errs.NewInternalServerError("Failed to delete order")
+	}
+
+	return nil
+}
