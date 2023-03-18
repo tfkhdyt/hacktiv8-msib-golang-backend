@@ -4,6 +4,7 @@ import (
 	"assignment_2/entity"
 	"assignment_2/pkg/errs"
 	"assignment_2/repository/order_repository"
+	"fmt"
 
 	"gorm.io/gorm"
 )
@@ -52,7 +53,7 @@ func (o *orderPG) GetOrderByID(orderID uint) (*entity.Order, errs.MessageErr) {
 	var order entity.Order
 
 	if err := o.db.Preload("Items").First(&order, orderID).Error; err != nil {
-		return nil, errs.NewNotFound("Order not found")
+		return nil, errs.NewNotFound(fmt.Sprintf("Order with id %d is not found", orderID))
 	}
 
 	return &order, nil
