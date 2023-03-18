@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.3.0 - 2023-03-18
+### Package updates
+- assignment-2 bumped to assignment-2-0.2.0
+### Global changes
+
+- - -
+
 ## 0.2.0 - 2023-03-18
 ### Package updates
 - assignment-2 bumped to assignment-2-0.1.0

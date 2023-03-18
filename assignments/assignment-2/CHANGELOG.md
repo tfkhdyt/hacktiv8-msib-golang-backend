@@ -2,6 +2,25 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## assignment-2-0.2.0 - 2023-03-18
+#### Bug Fixes
+- **(item-entity)** remove unique constraint from ItemCode property - (137892f) - tfkhdyt
+- **(order-pg)** change return value of UpdateOrderByID to order - (1ad68ce) - tfkhdyt
+- **(order-service)** change return type of UpdateOrderByID to *dto.GetOrderByIDResponse - (bd908b6) - tfkhdyt
+#### Features
+- **(dto)** add GetOrderByIDResponse dto - (5759ec7) - tfkhdyt
+- **(errs)** add NewNotFound error - (7e4c483) - tfkhdyt
+- **(http-handler)** add UpdateOrderByID method - (2c6c54d) - tfkhdyt
+- **(order-handler)** add GetOrderByID method - (6fa39fe) - tfkhdyt
+- **(order-pg)** add UpdateOrderByID method - (0d3c268) - tfkhdyt
+- **(order-pg)** add GetOrderByID method - (3816408) - tfkhdyt
+- **(order-service)** add UpdateOrderByID method - (114b4da) - tfkhdyt
+- **(order-service)** add GetOrderByID method - (d95f7a5) - tfkhdyt
+- **(route)** add route for get order by id - (f442959) - tfkhdyt
+- **(routes)** add route to update order by id - (7769bc3) - tfkhdyt
+
+- - -
+
 ## assignment-2-0.1.0 - 2023-03-18
 #### Bug Fixes
 - **(order-pg)** change return type from *[]entity.Order to []entity.Order - (7dab7d5) - tfkhdyt
