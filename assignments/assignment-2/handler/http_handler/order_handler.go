@@ -4,6 +4,8 @@ import (
 	"assignment_2/dto"
 	"assignment_2/pkg/errs"
 	"assignment_2/service"
+	"fmt"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -42,4 +44,23 @@ func (o *orderHandler) GetAllOrders(ctx *gin.Context) {
 	}
 
 	ctx.JSON(orders.StatusCode, orders)
+}
+
+func (o *orderHandler) GetOrderByID(ctx *gin.Context) {
+	orderID := ctx.Param("orderID")
+	fmt.Println(orderID)
+	orderIDInt, err := strconv.Atoi(orderID)
+	if err != nil {
+		newError := errs.NewBadRequest("orderID should be an unsigned integer")
+		ctx.JSON(newError.StatusCode(), newError)
+		return
+	}
+
+	order, errOrder := o.orderService.GetOrderByID(uint(orderIDInt))
+	if errOrder != nil {
+		ctx.JSON(errOrder.StatusCode(), errOrder)
+		return
+	}
+
+	ctx.JSON(order.StatusCode, order)
 }
