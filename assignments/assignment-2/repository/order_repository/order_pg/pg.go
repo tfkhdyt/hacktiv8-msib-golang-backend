@@ -50,3 +50,13 @@ func (o *orderPG) GetAllOrders() ([]entity.Order, errs.MessageErr) {
 
 	return orders, nil
 }
+
+func (o *orderPG) GetOrderByID(orderID uint) (*entity.Order, errs.MessageErr) {
+	var order entity.Order
+
+	if err := o.db.Preload("Items").First(&order, orderID).Error; err != nil {
+		return nil, errs.NewNotFound("Order not found")
+	}
+
+	return &order, nil
+}

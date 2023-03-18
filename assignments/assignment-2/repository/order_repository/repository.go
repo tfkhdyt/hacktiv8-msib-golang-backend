@@ -12,4 +12,6 @@ type OrderRepository interface {
 	) (*entity.Order, errs.MessageErr)
 
 	GetAllOrders() ([]entity.Order, errs.MessageErr)
+
+	GetOrderByID(orderID uint) (*entity.Order, errs.MessageErr)
 }
