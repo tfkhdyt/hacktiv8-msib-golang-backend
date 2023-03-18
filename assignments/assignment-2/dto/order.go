@@ -20,6 +20,12 @@ type GetAllOrdersResponse struct {
 	Data       []OrderData `json:"data"`
 }
 
+type GetOrderByIDResponse struct {
+	StatusCode int       `json:"statusCode"`
+	Message    string    `json:"message"`
+	Data       OrderData `json:"data"`
+}
+
 type OrderData struct {
 	ID           uint       `json:"id"`
 	CreatedAt    time.Time  `json:"createdAt"`
