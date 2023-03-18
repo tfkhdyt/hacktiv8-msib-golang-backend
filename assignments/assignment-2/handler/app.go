@@ -1,12 +1,11 @@
 package handler
 
 import (
-	"log"
-
 	"assignment_2/database"
 	"assignment_2/handler/http_handler"
 	"assignment_2/repository/order_repository/order_pg"
 	"assignment_2/service"
+	"log"
 
 	"github.com/gin-gonic/gin"
 )
@@ -21,6 +20,7 @@ func StartApp() {
 	r := gin.Default()
 	r.POST("/orders", orderHandler.CreateOrder)
 	r.GET("/orders", orderHandler.GetAllOrders)
+	r.GET("/orders/:orderID", orderHandler.GetOrderByID)
 
 	if err := r.Run(":3000"); err != nil {
 		log.Fatalln(err.Error())
