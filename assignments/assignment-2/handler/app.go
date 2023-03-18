@@ -21,6 +21,7 @@ func StartApp() {
 	r.POST("/orders", orderHandler.CreateOrder)
 	r.GET("/orders", orderHandler.GetAllOrders)
 	r.GET("/orders/:orderID", orderHandler.GetOrderByID)
+	r.PATCH("/orders/:orderID", orderHandler.UpdateOrderByID)
 
 	if err := r.Run(":3000"); err != nil {
 		log.Fatalln(err.Error())
