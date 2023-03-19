@@ -27,9 +27,7 @@ func NewOrderService(orderRepo order_repository.OrderRepository) OrderService {
 	}
 }
 
-func (o *orderService) CreateOrder(
-	payload dto.NewOrderRequest,
-) (*dto.NewOrderResponse, errs.MessageErr) {
+func (o *orderService) CreateOrder(payload dto.NewOrderRequest) (*dto.NewOrderResponse, errs.MessageErr) {
 	orderPayload := entity.Order{
 		CustomerName: payload.CustomerName,
 		OrderedAt:    payload.OrderedAt,
