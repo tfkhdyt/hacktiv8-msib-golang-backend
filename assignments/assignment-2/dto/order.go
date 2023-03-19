@@ -5,7 +5,7 @@ import "time"
 type NewOrderRequest struct {
 	OrderedAt    time.Time        `json:"orderedAt"       `
 	CustomerName string           `json:"customerName"    binding:"required"`
-	Items        []NewItemRequest `json:"items,omitempty" binding:"required"`
+	Items        []NewItemRequest `json:"items" binding:"required"`
 }
 
 type NewOrderResponse struct {
