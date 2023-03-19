@@ -13,14 +13,16 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-func StartApp() {
+func init() {
 	docs.SwaggerInfo.Title = "Order and Item API"
 	docs.SwaggerInfo.Description = "This is an assignment for Hacktiv8 Golang Course"
 	docs.SwaggerInfo.Version = "0.3"
-	docs.SwaggerInfo.Host = "localhost:3000"
+	docs.SwaggerInfo.Host = "localhost:8080"
 	docs.SwaggerInfo.BasePath = "/"
 	docs.SwaggerInfo.Schemes = []string{"http", "https"}
+}
 
+func StartApp() {
 	db := database.GetPostgresInstance()
 
 	orderRepo := order_pg.NewOrderPG(db)
@@ -39,10 +41,10 @@ func StartApp() {
 	r.PATCH("/orders/:orderID", orderHandler.UpdateOrderByID)
 	// Delete
 	r.DELETE("/orders/:orderID", orderHandler.DeleteOrderByID)
-
+	// Swagger
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-	if err := r.Run(":3000"); err != nil {
+	if err := r.Run(":8080"); err != nil {
 		log.Fatalln(err.Error())
 	}
 }
