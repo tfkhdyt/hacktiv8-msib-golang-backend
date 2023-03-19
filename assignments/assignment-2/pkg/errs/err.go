@@ -8,26 +8,26 @@ type MessageErr interface {
 	Error() string
 }
 
-type messageErrData struct {
+type MessageErrData struct {
 	ErrMessage    string `json:"message"`
 	ErrStatusCode int    `json:"statusCode"`
 	ErrError      string `json:"error"`
 }
 
-func (e *messageErrData) Message() string {
+func (e *MessageErrData) Message() string {
 	return e.ErrMessage
 }
 
-func (e *messageErrData) StatusCode() int {
+func (e *MessageErrData) StatusCode() int {
 	return e.ErrStatusCode
 }
 
-func (e *messageErrData) Error() string {
+func (e *MessageErrData) Error() string {
 	return e.ErrError
 }
 
 func NewInternalServerError(message string) MessageErr {
-	return &messageErrData{
+	return &MessageErrData{
 		ErrMessage:    message,
 		ErrStatusCode: http.StatusInternalServerError,
 		ErrError:      "INTERNAL_SERVER_ERROR",
@@ -35,7 +35,7 @@ func NewInternalServerError(message string) MessageErr {
 }
 
 func NewUnprocessableEntity(message string) MessageErr {
-	return &messageErrData{
+	return &MessageErrData{
 		ErrMessage:    message,
 		ErrStatusCode: http.StatusUnprocessableEntity,
 		ErrError:      "INVALID_REQUEST_BODY",
@@ -43,7 +43,7 @@ func NewUnprocessableEntity(message string) MessageErr {
 }
 
 func NewBadRequest(message string) MessageErr {
-	return &messageErrData{
+	return &MessageErrData{
 		ErrMessage:    message,
 		ErrStatusCode: http.StatusBadRequest,
 		ErrError:      "BAD_REQUEST",
@@ -51,7 +51,7 @@ func NewBadRequest(message string) MessageErr {
 }
 
 func NewNotFound(message string) MessageErr {
-	return &messageErrData{
+	return &MessageErrData{
 		ErrMessage:    message,
 		ErrStatusCode: http.StatusNotFound,
 		ErrError:      "DATA_NOT_FOUND",
