@@ -243,10 +243,12 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "message": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Order with id 69 has been successfully deleted"
                 },
                 "statusCode": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 200
                 }
             }
         },
@@ -260,10 +262,12 @@ const docTemplate = `{
                     }
                 },
                 "message": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "success"
                 },
                 "statusCode": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 200
                 }
             }
         },
@@ -274,10 +278,12 @@ const docTemplate = `{
                     "$ref": "#/definitions/dto.OrderData"
                 },
                 "message": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "success"
                 },
                 "statusCode": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 200
                 }
             }
         },
@@ -285,25 +291,32 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "createdAt": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "2023-03-19T18:55:00+07:00"
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Ini adalah sebuah barang yang dipesan"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 2
                 },
                 "itemCode": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "BRNG-001"
                 },
                 "orderId": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 },
                 "quantity": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 },
                 "updatedAt": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "2023-03-19T18:55:00+07:00"
                 }
             }
         },
@@ -316,13 +329,16 @@ const docTemplate = `{
             ],
             "properties": {
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Ini adalah sebuah barang yang dipesan"
                 },
                 "itemCode": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "BRNG-001"
                 },
                 "quantity": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 }
             }
         },
@@ -334,7 +350,8 @@ const docTemplate = `{
             ],
             "properties": {
                 "customerName": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Taufik Hidayat"
                 },
                 "items": {
                     "type": "array",
@@ -343,7 +360,8 @@ const docTemplate = `{
                     }
                 },
                 "orderedAt": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "2023-03-19T18:55:00+07:00"
                 }
             }
         },
@@ -354,10 +372,12 @@ const docTemplate = `{
                     "$ref": "#/definitions/dto.NewOrderRequest"
                 },
                 "message": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Order with id 69 has been successfully created"
                 },
                 "statusCode": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 201
                 }
             }
         },
@@ -365,13 +385,16 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "createdAt": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "2023-03-19T18:55:00+07:00"
                 },
                 "customerName": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Taufik Hidayat"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 },
                 "items": {
                     "type": "array",
@@ -380,7 +403,8 @@ const docTemplate = `{
                     }
                 },
                 "updatedAt": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "2023-03-19T18:55:00+07:00"
                 }
             }
         },
@@ -388,13 +412,16 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "error": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "BAD_REQUEST"
                 },
                 "message": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "This is an error message"
                 },
                 "statusCode": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 400
                 }
             }
         }

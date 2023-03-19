@@ -2,8 +2,10 @@ definitions:
   dto.DeleteOrderByIDResponse:
     properties:
       message:
+        example: Order with id 69 has been successfully deleted
         type: string
       statusCode:
+        example: 200
         type: integer
     type: object
   dto.GetAllOrdersResponse:
@@ -13,8 +15,10 @@ definitions:
           $ref: '#/definitions/dto.OrderData'
         type: array
       message:
+        example: success
         type: string
       statusCode:
+        example: 200
         type: integer
     type: object
   dto.GetOrderByIDResponse:
@@ -22,34 +26,46 @@ definitions:
       data:
         $ref: '#/definitions/dto.OrderData'
       message:
+        example: success
         type: string
       statusCode:
+        example: 200
         type: integer
     type: object
   dto.ItemData:
     properties:
       createdAt:
+        example: "2023-03-19T18:55:00+07:00"
         type: string
       description:
+        example: Ini adalah sebuah barang yang dipesan
         type: string
       id:
+        example: 2
         type: integer
       itemCode:
+        example: BRNG-001
         type: string
       orderId:
+        example: 1
         type: integer
       quantity:
+        example: 1
         type: integer
       updatedAt:
+        example: "2023-03-19T18:55:00+07:00"
         type: string
     type: object
   dto.NewItemRequest:
     properties:
       description:
+        example: Ini adalah sebuah barang yang dipesan
         type: string
       itemCode:
+        example: BRNG-001
         type: string
       quantity:
+        example: 1
         type: integer
     required:
     - description
@@ -59,12 +75,14 @@ definitions:
   dto.NewOrderRequest:
     properties:
       customerName:
+        example: Taufik Hidayat
         type: string
       items:
         items:
           $ref: '#/definitions/dto.NewItemRequest'
         type: array
       orderedAt:
+        example: "2023-03-19T18:55:00+07:00"
         type: string
     required:
     - customerName
@@ -75,32 +93,41 @@ definitions:
       data:
         $ref: '#/definitions/dto.NewOrderRequest'
       message:
+        example: Order with id 69 has been successfully created
         type: string
       statusCode:
+        example: 201
         type: integer
     type: object
   dto.OrderData:
     properties:
       createdAt:
+        example: "2023-03-19T18:55:00+07:00"
         type: string
       customerName:
+        example: Taufik Hidayat
         type: string
       id:
+        example: 1
         type: integer
       items:
         items:
           $ref: '#/definitions/dto.ItemData'
         type: array
       updatedAt:
+        example: "2023-03-19T18:55:00+07:00"
         type: string
     type: object
   errs.MessageErrData:
     properties:
       error:
+        example: BAD_REQUEST
         type: string
       message:
+        example: This is an error message
         type: string
       statusCode:
+        example: 400
         type: integer
     type: object
 info:
