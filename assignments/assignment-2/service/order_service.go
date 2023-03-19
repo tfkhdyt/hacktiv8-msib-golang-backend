@@ -49,12 +49,24 @@ func (o *orderService) CreateOrder(payload dto.NewOrderRequest) (*dto.NewOrderRe
 		return nil, err
 	}
 
+	items := []dto.NewItemRequest{}
+	for _, eachItem := range newOrder.Items {
+		item := dto.NewItemRequest{
+			ItemCode:    eachItem.ItemCode,
+			Description: eachItem.Description,
+			Quantity:    eachItem.Quantity,
+		}
+
+		items = append(items, item)
+	}
+
 	response := &dto.NewOrderResponse{
 		Message:    fmt.Sprintf("Order with id %d has been successfully created", newOrder.ID),
 		StatusCode: http.StatusCreated,
 		Data: dto.NewOrderRequest{
 			OrderedAt:    newOrder.OrderedAt,
 			CustomerName: newOrder.CustomerName,
+			Items:        items,
 		},
 	}
 
