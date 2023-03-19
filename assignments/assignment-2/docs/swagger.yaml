@@ -1,0 +1,256 @@
+definitions:
+  dto.DeleteOrderByIDResponse:
+    properties:
+      message:
+        type: string
+      statusCode:
+        type: integer
+    type: object
+  dto.GetAllOrdersResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/dto.OrderData'
+        type: array
+      message:
+        type: string
+      statusCode:
+        type: integer
+    type: object
+  dto.GetOrderByIDResponse:
+    properties:
+      data:
+        $ref: '#/definitions/dto.OrderData'
+      message:
+        type: string
+      statusCode:
+        type: integer
+    type: object
+  dto.ItemData:
+    properties:
+      createdAt:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      itemCode:
+        type: string
+      orderId:
+        type: integer
+      quantity:
+        type: integer
+      updatedAt:
+        type: string
+    type: object
+  dto.NewItemRequest:
+    properties:
+      description:
+        type: string
+      itemCode:
+        type: string
+      quantity:
+        type: integer
+    required:
+    - description
+    - itemCode
+    - quantity
+    type: object
+  dto.NewOrderRequest:
+    properties:
+      customerName:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/dto.NewItemRequest'
+        type: array
+      orderedAt:
+        type: string
+    required:
+    - customerName
+    - items
+    type: object
+  dto.NewOrderResponse:
+    properties:
+      data:
+        $ref: '#/definitions/dto.NewOrderRequest'
+      message:
+        type: string
+      statusCode:
+        type: integer
+    type: object
+  dto.OrderData:
+    properties:
+      createdAt:
+        type: string
+      customerName:
+        type: string
+      id:
+        type: integer
+      items:
+        items:
+          $ref: '#/definitions/dto.ItemData'
+        type: array
+      updatedAt:
+        type: string
+    type: object
+  errs.MessageErrData:
+    properties:
+      error:
+        type: string
+      message:
+        type: string
+      statusCode:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /orders:
+    get:
+      consumes:
+      - application/json
+      description: Get all orders
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.GetAllOrdersResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errs.MessageErrData'
+      summary: List orders
+      tags:
+      - orders
+    post:
+      consumes:
+      - application/json
+      description: Create an order by json
+      parameters:
+      - description: Create order request body
+        in: body
+        name: order
+        required: true
+        schema:
+          $ref: '#/definitions/dto.NewOrderRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.NewOrderResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errs.MessageErrData'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/errs.MessageErrData'
+      summary: Create order
+      tags:
+      - orders
+  /orders/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete an order by id
+      parameters:
+      - description: Order ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.DeleteOrderByIDResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errs.MessageErrData'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/errs.MessageErrData'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errs.MessageErrData'
+      summary: Delete order
+      tags:
+      - orders
+    get:
+      consumes:
+      - application/json
+      description: Get an order by id
+      parameters:
+      - description: Order ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.GetOrderByIDResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errs.MessageErrData'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/errs.MessageErrData'
+      summary: Find order
+      tags:
+      - orders
+    patch:
+      consumes:
+      - application/json
+      description: Update an order by json
+      parameters:
+      - description: Order ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Update order request body
+        in: body
+        name: order
+        required: true
+        schema:
+          $ref: '#/definitions/dto.NewOrderRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.GetOrderByIDResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errs.MessageErrData'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/errs.MessageErrData'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/errs.MessageErrData'
+      summary: Update order
+      tags:
+      - orders
+swagger: "2.0"
