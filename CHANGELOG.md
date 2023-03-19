@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.5.0 - 2023-03-19
+### Package updates
+- assignment-2 bumped to assignment-2-0.4.0
+### Global changes
+#### Miscellaneous Chores
+- **(gitignore)** add bin directory - (cfbded9) - tfkhdyt
+
+- - -
+
 ## 0.4.0 - 2023-03-18
 ### Package updates
 - assignment-2 bumped to assignment-2-0.3.0

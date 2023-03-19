@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## assignment-2-0.4.0 - 2023-03-19
+#### Bug Fixes
+- **(order-dto)** remove omitempty from json tag - (99819ec) - tfkhdyt
+#### Build system
+- **(deps)** install swagger - (6cc39c4) - tfkhdyt
+#### Documentation
+- **(app)** setup gin-swagger - (b5f8ec6) - tfkhdyt
+- **(order-handler)** add swagger API docs - (186602d) - tfkhdyt
+- **(swagger)** generate API docs - (2874dfb) - tfkhdyt
+#### Features
+- **(order-service)** add items to returned response - (770caee) - tfkhdyt
+#### Miscellaneous Chores
+- **(assignment-2)** add .env.example - (50da244) - tfkhdyt
+- **(assignment-2)** add link txt file for submission - (646658d) - tfkhdyt
+- **(swagger)** bump swaggerinfo version to 0.4 - (2457a60) - tfkhdyt
+#### Refactoring
+- **(app)** change port to 8080, move SwaggerInfo initialization to init function - (420d772) - tfkhdyt
+- **(errs)** rename messageErrData to MessageErrData - (88b736a) - tfkhdyt
+#### Style
+- **(order-service)** remove unneeded newline on CreateOrder - (78f3665) - tfkhdyt
+
+- - -
+
 ## assignment-2-0.3.0 - 2023-03-18
 #### Bug Fixes
 - **(order-pg)** change not found error message to "Order with id %d is not found" - (1488245) - tfkhdyt
