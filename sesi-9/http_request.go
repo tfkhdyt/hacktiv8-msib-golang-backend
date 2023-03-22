@@ -16,7 +16,7 @@ type student struct {
 	Grade int
 }
 
-func main() {
+func httpRequest() {
 	users, err := fetchUsers()
 	if err != nil {
 		fmt.Println("Error:", err.Error())
