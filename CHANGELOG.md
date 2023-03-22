@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.6.0 - 2023-03-22
+### Package updates
+### Global changes
+#### Features
+- **(sesi-9)** learn about vendoring - (fc00eab) - tfkhdyt
+- **(sesi-9)** learn about basic auth - (cb3a6c7) - tfkhdyt
+- **(tugas-dokumen)** add "REST API dengan Golang" summary - (2af5219) - tfkhdyt
+- add sesi-9 - (d4b1ac1) - tfkhdyt
+#### Miscellaneous Chores
+- **(gitignore)** add vendor - (e555493) - tfkhdyt
+
+- - -
+
 ## 0.5.0 - 2023-03-19
 ### Package updates
 - assignment-2 bumped to assignment-2-0.4.0
