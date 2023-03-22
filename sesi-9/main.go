@@ -2,5 +2,6 @@ package main
 
 func main() {
 	// httpRequest()
-	httpAuthBasic()
+	// httpAuthBasic()
+	goVendoring()
 }
