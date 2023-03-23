@@ -1,11 +1,21 @@
 package dto
 
-import "time"
+import (
+	"assignment_2/entity"
+	"time"
+)
 
 type NewOrderRequest struct {
 	OrderedAt    time.Time        `json:"orderedAt" example:"2023-03-19T18:55:00+07:00"`
 	CustomerName string           `json:"customerName" binding:"required" example:"Taufik Hidayat"`
 	Items        []NewItemRequest `json:"items" binding:"required"`
+}
+
+func (o *NewOrderRequest) OrderRequestToEntity() *entity.Order {
+	return &entity.Order{
+		CustomerName: o.CustomerName,
+		OrderedAt:    o.OrderedAt,
+	}
 }
 
 type NewOrderResponse struct {
