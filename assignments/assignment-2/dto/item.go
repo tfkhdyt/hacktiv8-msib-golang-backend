@@ -1,11 +1,22 @@
 package dto
 
-import "time"
+import (
+	"assignment_2/entity"
+	"time"
+)
 
 type NewItemRequest struct {
 	ItemCode    string `json:"itemCode"    binding:"required" example:"BRNG-001"`
 	Description string `json:"description" binding:"required" example:"Ini adalah sebuah barang yang dipesan"`
 	Quantity    uint   `json:"quantity"    binding:"required" example:"1"`
+}
+
+func (i *NewItemRequest) ItemRequestToEntity() *entity.Item {
+	return &entity.Item{
+		ItemCode:    i.ItemCode,
+		Description: i.Description,
+		Quantity:    i.Quantity,
+	}
 }
 
 type ItemData struct {
