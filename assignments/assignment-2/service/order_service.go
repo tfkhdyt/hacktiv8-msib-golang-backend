@@ -28,18 +28,11 @@ func NewOrderService(orderRepo order_repository.OrderRepository) OrderService {
 }
 
 func (o *orderService) CreateOrder(payload dto.NewOrderRequest) (*dto.NewOrderResponse, errs.MessageErr) {
-	orderPayload := entity.Order{
-		CustomerName: payload.CustomerName,
-		OrderedAt:    payload.OrderedAt,
-	}
+	orderPayload := payload.OrderRequestToEntity()
 
-	itemsPayload := []entity.Item{}
+	itemsPayload := []*entity.Item{}
 	for _, eachItem := range payload.Items {
-		item := entity.Item{
-			ItemCode:    eachItem.ItemCode,
-			Description: eachItem.Description,
-			Quantity:    eachItem.Quantity,
-		}
+		item := eachItem.ItemRequestToEntity()
 
 		itemsPayload = append(itemsPayload, item)
 	}
