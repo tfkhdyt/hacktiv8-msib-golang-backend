@@ -19,14 +19,14 @@ func NewOrderPG(db *gorm.DB) order_repository.OrderRepository {
 	}
 }
 
-func (o *orderPG) CreateOrder(orderPayload entity.Order, itemsPayload []entity.Item) (*entity.Order, errs.MessageErr) {
+func (o *orderPG) CreateOrder(orderPayload *entity.Order, itemsPayload []*entity.Item) (*entity.Order, errs.MessageErr) {
 	if err := o.db.Transaction(func(tx *gorm.DB) error {
-		if err := tx.Create(&orderPayload).Error; err != nil {
+		if err := tx.Create(orderPayload).Error; err != nil {
 			return err
 		}
 
 		for _, item := range itemsPayload {
-			if err := tx.Model(&orderPayload).Association("Items").Append(&item); err != nil {
+			if err := tx.Model(orderPayload).Association("Items").Append(item); err != nil {
 				return err
 			}
 		}
@@ -36,7 +36,7 @@ func (o *orderPG) CreateOrder(orderPayload entity.Order, itemsPayload []entity.I
 		return nil, errs.NewBadRequest(err.Error())
 	}
 
-	return &orderPayload, nil
+	return orderPayload, nil
 }
 
 func (o *orderPG) GetAllOrders() ([]entity.Order, errs.MessageErr) {

@@ -6,7 +6,7 @@ import (
 )
 
 type OrderRepository interface {
-	CreateOrder(orderPayload entity.Order, itemsPayload []entity.Item) (*entity.Order, errs.MessageErr)
+	CreateOrder(orderPayload *entity.Order, itemsPayload []*entity.Item) (*entity.Order, errs.MessageErr)
 
 	GetAllOrders() ([]entity.Order, errs.MessageErr)
 
