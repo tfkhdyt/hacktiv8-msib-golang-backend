@@ -4,6 +4,7 @@ import (
 	"assignment_2/database"
 	"assignment_2/docs"
 	"assignment_2/handler/http_handler"
+	"assignment_2/repository/item_repository/item_pg"
 	"assignment_2/repository/order_repository/order_pg"
 	"assignment_2/service"
 	"log"
@@ -16,7 +17,7 @@ import (
 func init() {
 	docs.SwaggerInfo.Title = "Order and Item API"
 	docs.SwaggerInfo.Description = "This is an assignment for Hacktiv8 Golang Course"
-	docs.SwaggerInfo.Version = "0.4"
+	docs.SwaggerInfo.Version = "v0"
 	docs.SwaggerInfo.Host = "localhost:8080"
 	docs.SwaggerInfo.BasePath = "/"
 	docs.SwaggerInfo.Schemes = []string{"http", "https"}
@@ -25,7 +26,8 @@ func init() {
 func StartApp() {
 	db := database.GetPostgresInstance()
 
-	orderRepo := order_pg.NewOrderPG(db)
+	itemRepo := item_pg.NewItemPG(db)
+	orderRepo := order_pg.NewOrderPG(db, itemRepo)
 	orderService := service.NewOrderService(orderRepo)
 	orderHandler := http_handler.NewOrderHandler(orderService)
 

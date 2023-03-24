@@ -28,20 +28,13 @@ func NewOrderService(orderRepo order_repository.OrderRepository) OrderService {
 }
 
 func (o *orderService) CreateOrder(payload dto.NewOrderRequest) (*dto.NewOrderResponse, errs.MessageErr) {
-	orderPayload := entity.Order{
-		CustomerName: payload.CustomerName,
-		OrderedAt:    payload.OrderedAt,
-	}
+	orderPayload := payload.OrderRequestToEntity()
 
 	itemsPayload := []entity.Item{}
 	for _, eachItem := range payload.Items {
-		item := entity.Item{
-			ItemCode:    eachItem.ItemCode,
-			Description: eachItem.Description,
-			Quantity:    eachItem.Quantity,
-		}
+		item := eachItem.ItemRequestToEntity()
 
-		itemsPayload = append(itemsPayload, item)
+		itemsPayload = append(itemsPayload, *item)
 	}
 
 	newOrder, err := o.orderRepo.CreateOrder(orderPayload, itemsPayload)
@@ -155,20 +148,13 @@ func (o *orderService) GetOrderByID(orderID uint) (*dto.GetOrderByIDResponse, er
 }
 
 func (o *orderService) UpdateOrderByID(orderID uint, payload dto.NewOrderRequest) (*dto.GetOrderByIDResponse, errs.MessageErr) {
-	orderPayload := entity.Order{
-		CustomerName: payload.CustomerName,
-		OrderedAt:    payload.OrderedAt,
-	}
+	orderPayload := payload.OrderRequestToEntity()
 
 	itemsPayload := []entity.Item{}
 	for _, eachItem := range payload.Items {
-		item := entity.Item{
-			ItemCode:    eachItem.ItemCode,
-			Description: eachItem.Description,
-			Quantity:    eachItem.Quantity,
-		}
+		item := eachItem.ItemRequestToEntity()
 
-		itemsPayload = append(itemsPayload, item)
+		itemsPayload = append(itemsPayload, *item)
 	}
 
 	updatedOrder, err := o.orderRepo.UpdateOrderByID(orderID, orderPayload, itemsPayload)
