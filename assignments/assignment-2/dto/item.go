@@ -28,3 +28,9 @@ type ItemData struct {
 	Quantity    uint      `json:"quantity" example:"1"`
 	OrderID     uint      `json:"orderId" example:"1"`
 }
+
+type UpdateItemResponse struct {
+	StatusCode int      `json:"statusCode" example:"200"`
+	Message    string   `json:"message" example:"Order with itemCode BRH-001 has been successfully updated"`
+	Data       ItemData `json:"data"`
+}
