@@ -17,7 +17,7 @@ import (
 func init() {
 	docs.SwaggerInfo.Title = "Order and Item API"
 	docs.SwaggerInfo.Description = "This is an assignment for Hacktiv8 Golang Course"
-	docs.SwaggerInfo.Version = "0.4"
+	docs.SwaggerInfo.Version = "v0"
 	docs.SwaggerInfo.Host = "localhost:8080"
 	docs.SwaggerInfo.BasePath = "/"
 	docs.SwaggerInfo.Schemes = []string{"http", "https"}
