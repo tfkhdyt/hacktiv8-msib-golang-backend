@@ -24,20 +24,33 @@ func NewOrderPG(db *gorm.DB, itemRepo item_repository.ItemRepository) order_repo
 }
 
 func (o *orderPG) CreateOrder(orderPayload *entity.Order, itemsPayload []entity.Item) (*entity.Order, errs.MessageErr) {
-	if err := o.db.Transaction(func(tx *gorm.DB) error {
-		if err := tx.Create(orderPayload).Error; err != nil {
-			return err
+	tx := o.db.Begin()
+	defer func() {
+		if r := recover(); r != nil {
+			tx.Rollback()
 		}
+	}()
 
-		for _, item := range itemsPayload {
-			if err := tx.Model(orderPayload).Association("Items").Append(item); err != nil {
-				return err
-			}
+	if err := tx.Error; err != nil {
+		log.Printf("Error: %v\n", err.Error())
+		return nil, errs.NewInternalServerError("Failed to begin transaction")
+	}
+
+	if err := tx.Create(orderPayload).Error; err != nil {
+		tx.Rollback()
+		return nil, errs.NewBadRequest(fmt.Sprintf("Failed to create new order. %v", err.Error()))
+	}
+
+	for _, item := range itemsPayload {
+		if err := tx.Model(orderPayload).Association("Items").Append(&item); err != nil {
+			tx.Rollback()
+			return nil, errs.NewBadRequest(fmt.Sprintf("Failed to create new item. %v", err.Error()))
 		}
+	}
 
-		return nil
-	}); err != nil {
-		return nil, errs.NewBadRequest(err.Error())
+	if err := tx.Commit().Error; err != nil {
+		tx.Rollback()
+		return nil, errs.NewInternalServerError("Failed to commit transaction")
 	}
 
 	return orderPayload, nil
@@ -77,7 +90,7 @@ func (o *orderPG) UpdateOrderByID(orderID uint, orderPayload *entity.Order, item
 	}()
 
 	if err := tx.Error; err != nil {
-		log.Panicf("Error: %v\n", err.Error())
+		log.Printf("Error: %v\n", err.Error())
 		return nil, errs.NewInternalServerError("Failed to begin transaction")
 	}
 
