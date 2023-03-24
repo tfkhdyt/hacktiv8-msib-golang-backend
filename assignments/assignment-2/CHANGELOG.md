@@ -2,6 +2,27 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## assignment-2-0.5.0 - 2023-03-24
+#### Bug Fixes
+- **(order-pg)** change transaction method - (c89afe4) - tfkhdyt
+- **(order-pg)** change update item in order logic - (3a7379d) - tfkhdyt
+- **(order-repo)** remove pointer from change parameter type of array - (40ea519) - tfkhdyt
+#### Documentation
+- **(swagger)** add example value to dto and custom errors - (b6c74b4) - tfkhdyt
+#### Features
+- **(app)** initialize itemRepo and setup orderRepo dependency injection - (b767005) - tfkhdyt
+- **(item-dto)** add UpdateItemResponse dto - (b1ee907) - tfkhdyt
+- **(item-dto)** add method to convert item request to item entity - (ac01683) - tfkhdyt
+- **(item-entity)** add unique constraint to ItemCode - (2da07ae) - tfkhdyt
+- **(order-dto)** add method to convert order request to order entity - (4743d80) - tfkhdyt
+- **(repo)** add item repository - (5ef7a32) - tfkhdyt
+#### Refactoring
+- **(order-pg)** change parameter type of CreateOrder to pointer of entity - (4515a52) - tfkhdyt
+- **(order-service)** use RequestToEntity() method to convert item request to entity - (38768bb) - tfkhdyt
+- **(order-service)** use RequestToEntity method - (b858022) - tfkhdyt
+
+- - -
+
 ## assignment-2-0.4.0 - 2023-03-19
 #### Bug Fixes
 - **(order-dto)** remove omitempty from json tag - (99819ec) - tfkhdyt
