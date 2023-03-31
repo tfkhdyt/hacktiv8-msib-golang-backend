@@ -50,8 +50,10 @@ func main() {
 
 	go generateStatus(1, 100)
 
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		tmpl, err := template.ParseFiles("index.html")
+		tmpl, err := template.ParseGlob("*.html")
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
@@ -86,7 +88,7 @@ func main() {
 			response.Wind.Description = "Bahaya"
 		}
 
-		if err := tmpl.Execute(w, response); err != nil {
+		if err := tmpl.ExecuteTemplate(w, "index", response); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
 	})
