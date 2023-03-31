@@ -25,11 +25,13 @@ type Response struct {
 	Wind  StatusDetail `json:"wind"`
 }
 
+var r = rand.New(rand.NewSource(time.Now().UnixMicro()))
+
 func generateStatus(min int, max int) {
 	for {
 		status := Status{
-			Water: rand.Intn(max-min) + min,
-			Wind:  rand.Intn(max-min) + min,
+			Water: r.Intn(max-min) + min,
+			Wind:  r.Intn(max-min) + min,
 		}
 
 		b, err := json.MarshalIndent(status, "", "  ")
@@ -46,8 +48,6 @@ func generateStatus(min int, max int) {
 }
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
-
 	go generateStatus(1, 100)
 
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
