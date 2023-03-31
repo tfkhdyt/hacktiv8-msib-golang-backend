@@ -3,8 +3,14 @@ pre-commit:
     assignment-2-lint:
       root: 'assignments/assignment-2/'
       run: golangci-lint run --fix
+    assignment-3-lint:
+      root: 'assignments/assignment-3/'
+      run: golangci-lint run --fix
 pre-push:
   commands:
     assignment-2-lint:
       root: 'assignments/assignment-2/'
+      run: golangci-lint run
+    assignment-3-lint:
+      root: 'assignments/assignment-3/'
       run: golangci-lint run
