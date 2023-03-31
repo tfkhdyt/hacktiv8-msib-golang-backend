@@ -15,7 +15,7 @@ func NewServiceHandler(serviceService service.StatusService) *serviceHandler {
 }
 
 func (s *serviceHandler) Index(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseGlob("*.html")
+	tmpl, err := template.ParseGlob("templates/*.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
