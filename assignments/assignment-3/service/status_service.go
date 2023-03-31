@@ -36,7 +36,7 @@ func (s *statusService) GenerateStatus(min int, max int) {
 			log.Fatalln("Failed to marshal status to json.", err.Error())
 		}
 
-		if err := os.WriteFile("data.json", b, 0644); err != nil {
+		if err := os.WriteFile("data/status.json", b, 0644); err != nil {
 			log.Fatalln("Failed to write json to file.", err.Error())
 		}
 
@@ -45,7 +45,7 @@ func (s *statusService) GenerateStatus(min int, max int) {
 }
 
 func (s *statusService) ReadStatus() (*dto.StatusResponse, error) {
-	b, err := os.ReadFile("data.json")
+	b, err := os.ReadFile("data/status.json")
 	if err != nil {
 		return nil, errors.New(err.Error())
 	}
