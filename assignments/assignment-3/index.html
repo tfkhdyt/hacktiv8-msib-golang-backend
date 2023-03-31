@@ -1,3 +1,4 @@
+{{define "index"}}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,9 +6,113 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="refresh" content="15" />
+    <link rel="stylesheet" href="/static/css/style.css" />
   </head>
   <body>
-    Status water => {{.Water.Value}} meter ({{.Water.Description}}) <br />
-    Status wind => {{.Wind.Value}} m/s ({{.Wind.Description}})
+    <div class="grid place-items-center h-screen">
+      <div class="w-96">
+        <article
+          class="flex justify-between items-end p-6 w-full bg-white rounded-lg border border-gray-100"
+        >
+          <div class="flex gap-4 items-center">
+            <span
+              class="hidden p-2 text-gray-600 bg-gray-100 rounded-full sm:block"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <g id="Environment / Water_Drop">
+                    <path
+                      id="Vector"
+                      d="M16.0001 13.3848C16.0001 14.6088 15.526 15.7828 14.6821 16.6483C14.203 17.1397 13.6269 17.5091 13 17.7364M19 13.6923C19 7.11538 12 2 12 2C12 2 5 7.11538 5 13.6923C5 15.6304 5.7375 17.4893 7.05025 18.8598C8.36301 20.2302 10.1436 20.9994 12.0001 20.9994C13.8566 20.9994 15.637 20.2298 16.9497 18.8594C18.2625 17.4889 19 15.6304 19 13.6923Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </span>
+
+            <div>
+              <p class="text-sm text-gray-500">Water status</p>
+
+              <p class="text-2xl font-medium text-gray-900">
+                {{.Water.Value}} meter
+              </p>
+            </div>
+          </div>
+
+          {{if eq .Water.Description "Aman"}}
+            {{template "aman"}}
+          {{else if eq .Water.Description "Siaga"}}
+            {{template "siaga"}}
+          {{else if eq .Water.Description "Bahaya"}}
+            {{template "bahaya"}}
+          {{end}}
+
+        </article>
+
+        <article
+          class="flex justify-between items-end p-6 w-full bg-white rounded-lg border border-gray-100"
+        >
+          <div class="flex gap-4 items-center">
+            <span
+              class="hidden p-2 text-gray-600 bg-gray-100 rounded-full sm:block"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M7 5C7 2.79086 8.79086 1 11 1C13.2091 1 15 2.79086 15 5C15 7.20914 13.2091 9 11 9H3C2.44772 9 2 8.55228 2 8C2 7.44772 2.44772 7 3 7H11C12.1046 7 13 6.10457 13 5C13 3.89543 12.1046 3 11 3C9.89543 3 9 3.89543 9 5V5.1C9 5.65228 8.55228 6.1 8 6.1C7.44772 6.1 7 5.65228 7 5.1V5ZM16.9 6C16.9 5.44772 17.3477 5 17.9 5H18C20.2091 5 22 6.79086 22 9C22 11.2091 20.2091 13 18 13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H18C19.1046 11 20 10.1046 20 9C20 7.89543 19.1046 7 18 7H17.9C17.3477 7 16.9 6.55228 16.9 6ZM0 12C0 11.4477 0.447715 11 1 11H2C2.55228 11 3 11.4477 3 12C3 12.5523 2.55228 13 2 13H1C0.447715 13 0 12.5523 0 12ZM4 16C4 15.4477 4.44772 15 5 15H6C6.55228 15 7 15.4477 7 16C7 16.5523 6.55228 17 6 17H5C4.44772 17 4 16.5523 4 16ZM8 16C8 15.4477 8.44772 15 9 15H13C15.2091 15 17 16.7909 17 19C17 21.2091 15.2091 23 13 23C10.7909 23 9 21.2091 9 19V18.9C9 18.3477 9.44771 17.9 10 17.9C10.5523 17.9 11 18.3477 11 18.9V19C11 20.1046 11.8954 21 13 21C14.1046 21 15 20.1046 15 19C15 17.8954 14.1046 17 13 17H9C8.44772 17 8 16.5523 8 16Z"
+                    fill="currentColor"
+                  ></path>
+                </g>
+              </svg>
+            </span>
+
+            <div>
+              <p class="text-sm text-gray-500">Wind status</p>
+
+              <p class="text-2xl font-medium text-gray-900">
+                {{.Wind.Value}} m/s
+              </p>
+            </div>
+          </div>
+
+          {{if eq .Wind.Description "Aman"}}
+            {{template "aman"}}
+          {{else if eq .Wind.Description "Siaga"}}
+            {{template "siaga"}}
+          {{else if eq .Wind.Description "Bahaya"}}
+            {{template "bahaya"}}
+          {{end}}
+        </article>
+      </div>
+    </div>
   </body>
 </html>
+{{end}}
